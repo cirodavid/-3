@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>♡</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      font-family: 'Quicksand', sans-serif;
+      color: black;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 600px;
+      text-align: center;
+      font-size: 1.2rem;
+      line-height: 1.7;
+    }
+
+    .slide {
+      display: none;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    .nav {
+      margin-top: 30px;
+      font-size: 0.9rem;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="slide active">
+      Baby you don't know how proud you make me feel.
+    </div>
+
+    <div class="slide">
+      Seeing you achieve greater things each day and all thanks to your own work and effort.
+    </div>
+
+    <div class="slide">
+      Knowing that I have a partner that is capable of such things;  
+      is just a feeling that everyone should be able to experience.
+    </div>
+
+    <div class="slide">
+      Simply because it's just one of the best things you could ever get to experience.  
+      But not everyone can find such an amazing partner as you baby, someone so capable and hardworking.
+    </div>
+
+    <div class="slide">
+      I'm so proud of you Angelika.  
+      I love you so much.
+    </div>
+
+    <div class="nav">Swipe</div>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    let index = 0;
+
+    function showSlide(i) {
+      slides.forEach(s => s.classList.remove('active'));
+      slides[i].classList.add('active');
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') index = (index + 1) % slides.length;
+      if (e.key === 'ArrowLeft') index = (index - 1 + slides.length) % slides.length;
+      showSlide(index);
+    });
+
+    let startX = 0;
+    document.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+    document.addEventListener('touchend', e => {
+      let endX = e.changedTouches[0].clientX;
+      if (startX - endX > 50) index = (index + 1) % slides.length;
+      if (endX - startX > 50) index = (index - 1 + slides.length) % slides.length;
+      showSlide(index);
+    });
+  </script>
+
+</body>
+</html>
